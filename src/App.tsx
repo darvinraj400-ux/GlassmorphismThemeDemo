@@ -59,7 +59,7 @@ function AppContent() {
         {/* Main Content */}
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0, width: '100%' }}>
           <Header onNewProject={handleNewProject} />
-          <main id="main-content" className="flex-1 p-3 pb-24 sm:p-4 sm:pb-20 lg:p-6 lg:pb-6">
+          <main id="main-content" className="flex-1 p-3 pb-24 sm:p-4 sm:pb-6 lg:p-6">
             {renderView()}
           </main>
         </div>
@@ -92,21 +92,25 @@ function MobileBottomNav() {
   ];
 
   return (
-    <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-40 glass-primary border-t border-white/10 safe-area-bottom" aria-label="Mobile navigation">
-      <div className="flex items-center justify-around py-2 px-1">
+    <nav 
+      className="lg:hidden fixed bottom-0 left-0 right-0 z-40 glass-primary border-t border-white/10"
+      style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
+      aria-label="Mobile navigation"
+    >
+      <div className="flex items-center justify-around py-2 px-1 max-w-screen-xl mx-auto">
         {items.map(item => (
           <button
             key={item.id}
             onClick={() => dispatch({ type: 'SET_VIEW', payload: item.id })}
-            className={`flex flex-col items-center gap-0.5 px-2 py-1.5 rounded-lg transition-colors min-w-0 flex-1 ${
+            className={`flex flex-col items-center gap-0.5 px-1 sm:px-2 py-1.5 rounded-lg transition-colors min-w-0 flex-1 ${
               state.currentView === item.id ? 'text-white' : 'text-[#AAB4D0]'
             }`}
             aria-current={state.currentView === item.id ? 'page' : undefined}
           >
-            <span className="text-lg leading-none">{item.icon}</span>
-            <span className="text-[10px] font-medium truncate">{item.label}</span>
+            <span className="text-base sm:text-lg leading-none">{item.icon}</span>
+            <span className="text-[9px] sm:text-[10px] font-medium truncate max-w-full">{item.label}</span>
             {state.currentView === item.id && (
-              <div className="w-4 h-0.5 rounded-full bg-[#7765F7] mt-0.5" />
+              <div className="w-3 sm:w-4 h-0.5 rounded-full bg-[#7765F7] mt-0.5" />
             )}
           </button>
         ))}

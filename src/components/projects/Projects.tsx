@@ -292,14 +292,14 @@ function ProjectDetail({ projectId, onBack, onNewTask }: { projectId: string; on
                   aria-label={task.status === 'done' ? 'Mark as incomplete' : 'Mark as complete'}
                 >
                   {task.status === 'done' ? (
-                    <CheckCircle2 size={18} className="text-[var(--aqua-mint)]" />
+                    <CheckCircle2 size={18} className="text-[#87E8D0]" />
                   ) : (
-                    <Circle size={18} className="text-[var(--muted-blue-grey)] hover:text-white transition-colors" />
+                    <Circle size={18} className="text-[#AAB4D0] hover:text-white transition-colors" />
                   )}
                 </button>
                 <div className="flex-1 min-w-0">
-                  <p className={`text-xs ${task.status === 'done' ? 'line-through text-[var(--muted-blue-grey)]' : 'text-white'}`}>{task.title}</p>
-                  <p className="text-[10px] text-[var(--muted-blue-grey)]">{getTaskStatusLabel(task.status)} · {task.priority} priority</p>
+                  <p className={`text-xs ${task.status === 'done' ? 'line-through text-[#AAB4D0]' : 'text-white'}`}>{task.title}</p>
+                  <p className="text-[10px] text-[#AAB4D0]">{getTaskStatusLabel(task.status)} · {task.priority} priority</p>
                 </div>
                 <StatusBadge status={task.priority} />
               </div>

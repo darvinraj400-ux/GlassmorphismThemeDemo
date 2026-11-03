@@ -76,7 +76,7 @@ export function Team() {
                   <Avatar name={selectedMemberData.name} color={selectedMemberData.avatarColor} size={56} />
                   <div>
                     <h3 className="text-base font-semibold text-white">{selectedMemberData.name}</h3>
-                    <p className="text-sm text-[var(--muted-blue-grey)]">{selectedMemberData.role}</p>
+                    <p className="text-sm text-[#AAB4D0]">{selectedMemberData.role}</p>
                     <div className="flex items-center gap-2 mt-1">
                       <span className={`w-2 h-2 rounded-full ${
                         selectedMemberData.status === 'active' ? 'bg-green-400' : selectedMemberData.status === 'away' ? 'bg-yellow-400' : 'bg-gray-500'

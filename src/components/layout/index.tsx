@@ -135,41 +135,44 @@ export function Header({ onNewProject }: { onNewProject: () => void }) {
   };
 
   return (
-    <header className="sticky top-0 z-30 px-4 py-3 lg:px-6">
-      <div className="glass-primary px-4 py-2.5 flex items-center gap-3">
+    <header className="sticky top-0 z-30 px-3 py-2 sm:px-4 sm:py-3 lg:px-6">
+      <div className="glass-primary px-3 py-2 sm:px-4 sm:py-2.5 flex items-center gap-2 sm:gap-3">
         {/* Mobile menu */}
         <button
-          className="lg:hidden p-2 rounded-lg hover:bg-white/10 transition-colors"
+          className="lg:hidden p-1.5 sm:p-2 rounded-lg hover:bg-white/10 transition-colors flex-shrink-0"
           onClick={() => dispatch({ type: 'TOGGLE_MOBILE_NAV' })}
           aria-label="Open navigation menu"
         >
-          <Menu size={20} className="text-[#AAB4D0]" />
+          <Menu size={18} className="sm:hidden text-[#AAB4D0]" />
+          <Menu size={20} className="hidden sm:block text-[#AAB4D0]" />
         </button>
 
         {/* Page title */}
-        <h2 className="text-sm font-semibold text-white flex-1">
+        <h2 className="text-xs sm:text-sm font-semibold text-white flex-1 min-w-0 truncate">
           {viewTitles[state.currentView] || 'Overview'}
         </h2>
 
         {/* Search */}
         <button
           onClick={() => dispatch({ type: 'TOGGLE_SEARCH' })}
-          className="p-2 rounded-lg hover:bg-white/10 transition-colors"
+          className="p-1.5 sm:p-2 rounded-lg hover:bg-white/10 transition-colors flex-shrink-0"
           aria-label="Search"
         >
-          <Search size={18} className="text-[#AAB4D0]" />
+          <Search size={16} className="sm:hidden text-[#AAB4D0]" />
+          <Search size={18} className="hidden sm:block text-[#AAB4D0]" />
         </button>
 
         {/* Notifications */}
-        <div className="relative" ref={notifRef}>
+        <div className="relative flex-shrink-0" ref={notifRef}>
           <button
             onClick={() => setNotifOpen(!notifOpen)}
-            className="p-2 rounded-lg hover:bg-white/10 transition-colors relative"
+            className="p-1.5 sm:p-2 rounded-lg hover:bg-white/10 transition-colors relative"
             aria-label={`Notifications${unreadCount > 0 ? `, ${unreadCount} unread` : ''}`}
           >
-            <Bell size={18} className="text-[#AAB4D0]" />
+            <Bell size={16} className="sm:hidden text-[#AAB4D0]" />
+            <Bell size={18} className="hidden sm:block text-[#AAB4D0]" />
             {unreadCount > 0 && (
-              <span className="absolute top-1 right-1 w-4 h-4 bg-[#7765F7] rounded-full text-[10px] font-bold text-white flex items-center justify-center">
+              <span className="absolute top-0.5 right-0.5 sm:top-1 sm:right-1 w-3.5 h-3.5 sm:w-4 sm:h-4 bg-[#7765F7] rounded-full text-[9px] sm:text-[10px] font-bold text-white flex items-center justify-center">
                 {unreadCount}
               </span>
             )}
@@ -219,14 +222,14 @@ export function Header({ onNewProject }: { onNewProject: () => void }) {
         </button>
 
         {/* Profile */}
-        <div className="relative" ref={profileRef}>
+        <div className="relative flex-shrink-0" ref={profileRef}>
           <button
             onClick={() => setProfileOpen(!profileOpen)}
-            className="flex items-center gap-2 p-1.5 rounded-lg hover:bg-white/10 transition-colors"
+            className="flex items-center gap-1.5 sm:gap-2 p-1 sm:p-1.5 rounded-lg hover:bg-white/10 transition-colors"
             aria-label="User menu"
           >
-            <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#7765F7] to-[#65DDF2] flex items-center justify-center">
-              <span className="text-[10px] font-bold text-white">U</span>
+            <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-gradient-to-br from-[#7765F7] to-[#65DDF2] flex items-center justify-center">
+              <span className="text-[9px] sm:text-[10px] font-bold text-white">U</span>
             </div>
             <ChevronDown size={12} className="text-[#AAB4D0] hidden sm:block" />
           </button>
