@@ -50,7 +50,7 @@ export function Modal({ open, onClose, title, children, maxWidth = 'max-w-lg' }:
         <div className="flex items-center justify-between mb-5">
           <h2 className="text-lg font-semibold text-white">{title}</h2>
           <button onClick={onClose} className="p-1.5 rounded-lg hover:bg-white/10 transition-colors" aria-label="Close dialog">
-            <X size={18} className="text-[var(--muted-blue-grey)]" />
+            <X size={18} className="text-[#AAB4D0]" />
           </button>
         </div>
         {children}
@@ -71,7 +71,7 @@ export function ConfirmDialog({ open, onClose, onConfirm, title, message, confir
 }) {
   return (
     <Modal open={open} onClose={onClose} title={title} maxWidth="max-w-md">
-      <p className="text-[var(--muted-blue-grey)] text-sm mb-6">{message}</p>
+      <p className="text-[#AAB4D0] text-sm mb-6">{message}</p>
       <div className="flex gap-3 justify-end">
         <button onClick={onClose} className="btn-glass">Cancel</button>
         <button onClick={() => { onConfirm(); onClose(); }} className={`btn-glass ${danger ? 'btn-danger' : 'btn-primary'}`}>{confirmLabel}</button>
@@ -84,7 +84,7 @@ export function ConfirmDialog({ open, onClose, onConfirm, title, message, confir
 export function FormField({ label, error, children }: { label: string; error?: string; children: React.ReactNode }) {
   return (
     <div className="mb-4">
-      <label className="block text-xs font-medium text-[var(--muted-blue-grey)] mb-1.5">{label}</label>
+      <label className="block text-xs font-medium text-[#AAB4D0] mb-1.5">{label}</label>
       {children}
       {error && <p className="text-xs text-red-400 mt-1">{error}</p>}
     </div>
@@ -100,9 +100,9 @@ export function EmptyState({ icon: Icon, title, description, action }: {
 }) {
   return (
     <div className="text-center py-12 px-6">
-      {Icon && <Icon size={40} className="mx-auto mb-4 text-[var(--muted-blue-grey)] opacity-50" />}
-      <h3 className="text-sm font-medium text-[var(--cloud-white)] mb-1">{title}</h3>
-      <p className="text-xs text-[var(--muted-blue-grey)] mb-4">{description}</p>
+      {Icon && <Icon size={40} className="mx-auto mb-4 text-[#AAB4D0] opacity-50" />}
+      <h3 className="text-sm font-medium text-white mb-1">{title}</h3>
+      <p className="text-xs text-[#AAB4D0] mb-4">{description}</p>
       {action}
     </div>
   );

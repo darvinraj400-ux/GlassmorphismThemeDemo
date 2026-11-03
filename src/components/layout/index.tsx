@@ -19,16 +19,16 @@ export function Sidebar() {
   const { state, dispatch } = useApp();
 
   return (
-    <aside className="hidden lg:flex flex-col w-56 h-screen sticky top-0 p-4 z-20">
+    <aside className="hidden lg:flex flex-col w-56 p-4" style={{ position: 'sticky', top: 0, height: '100vh', zIndex: 20, flexShrink: 0 }}>
       <div className="glass-primary p-3 flex-1 flex flex-col">
         {/* Brand */}
         <div className="flex items-center gap-2.5 px-2 py-3 mb-4">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[var(--electric-violet)] to-[var(--luminous-cyan)] flex items-center justify-center">
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#7765F7] to-[#65DDF2] flex items-center justify-center">
             <span className="text-white font-bold text-sm">G</span>
           </div>
           <div>
             <h1 className="text-xs font-bold text-white tracking-wide">GLASS UI</h1>
-            <p className="text-[10px] text-[var(--muted-blue-grey)]">Dashboard</p>
+            <p className="text-[10px] text-[#AAB4D0]">Dashboard</p>
           </div>
         </div>
 
@@ -74,13 +74,13 @@ export function MobileNav() {
       <div className="absolute left-0 top-0 bottom-0 w-72 glass-floating p-4 animate-fade-in">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[var(--electric-violet)] to-[var(--luminous-cyan)] flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#7765F7] to-[#65DDF2] flex items-center justify-center">
               <span className="text-white font-bold text-sm">G</span>
             </div>
             <h1 className="text-sm font-bold text-white">GLASS UI</h1>
           </div>
           <button onClick={() => dispatch({ type: 'TOGGLE_MOBILE_NAV' })} className="p-2 rounded-lg hover:bg-white/10" aria-label="Close menu">
-            <X size={20} className="text-[var(--muted-blue-grey)]" />
+            <X size={20} className="text-[#AAB4D0]" />
           </button>
         </div>
         <nav className="space-y-1" aria-label="Mobile navigation">
@@ -143,7 +143,7 @@ export function Header({ onNewProject }: { onNewProject: () => void }) {
           onClick={() => dispatch({ type: 'TOGGLE_MOBILE_NAV' })}
           aria-label="Open navigation menu"
         >
-          <Menu size={20} className="text-[var(--muted-blue-grey)]" />
+          <Menu size={20} className="text-[#AAB4D0]" />
         </button>
 
         {/* Page title */}
@@ -157,7 +157,7 @@ export function Header({ onNewProject }: { onNewProject: () => void }) {
           className="p-2 rounded-lg hover:bg-white/10 transition-colors"
           aria-label="Search"
         >
-          <Search size={18} className="text-[var(--muted-blue-grey)]" />
+          <Search size={18} className="text-[#AAB4D0]" />
         </button>
 
         {/* Notifications */}
@@ -167,9 +167,9 @@ export function Header({ onNewProject }: { onNewProject: () => void }) {
             className="p-2 rounded-lg hover:bg-white/10 transition-colors relative"
             aria-label={`Notifications${unreadCount > 0 ? `, ${unreadCount} unread` : ''}`}
           >
-            <Bell size={18} className="text-[var(--muted-blue-grey)]" />
+            <Bell size={18} className="text-[#AAB4D0]" />
             {unreadCount > 0 && (
-              <span className="absolute top-1 right-1 w-4 h-4 bg-[var(--electric-violet)] rounded-full text-[10px] font-bold text-white flex items-center justify-center">
+              <span className="absolute top-1 right-1 w-4 h-4 bg-[#7765F7] rounded-full text-[10px] font-bold text-white flex items-center justify-center">
                 {unreadCount}
               </span>
             )}
@@ -180,13 +180,13 @@ export function Header({ onNewProject }: { onNewProject: () => void }) {
                 <h3 className="text-sm font-semibold text-white">Notifications</h3>
                 <button
                   onClick={() => dispatch({ type: 'MARK_ALL_NOTIFICATIONS_READ' })}
-                  className="text-xs text-[var(--electric-violet)] hover:underline"
+                  className="text-xs text-[#7765F7] hover:underline"
                 >
                   Mark all read
                 </button>
               </div>
               {state.notifications.length === 0 ? (
-                <p className="text-xs text-[var(--muted-blue-grey)] text-center py-4">No notifications</p>
+                <p className="text-xs text-[#AAB4D0] text-center py-4">No notifications</p>
               ) : (
                 <div className="space-y-2">
                   {state.notifications.map(n => (
@@ -194,14 +194,14 @@ export function Header({ onNewProject }: { onNewProject: () => void }) {
                       <div className="flex items-start justify-between gap-2">
                         <div>
                           <p className="text-xs font-medium text-white">{n.title}</p>
-                          <p className="text-[11px] text-[var(--muted-blue-grey)] mt-0.5">{n.message}</p>
+                          <p className="text-[11px] text-[#AAB4D0] mt-0.5">{n.message}</p>
                         </div>
                         <button
                           onClick={() => dispatch({ type: 'DISMISS_NOTIFICATION', payload: n.id })}
                           className="p-0.5 hover:bg-white/10 rounded"
                           aria-label="Dismiss notification"
                         >
-                          <X size={12} className="text-[var(--muted-blue-grey)]" />
+                          <X size={12} className="text-[#AAB4D0]" />
                         </button>
                       </div>
                     </div>
@@ -225,16 +225,16 @@ export function Header({ onNewProject }: { onNewProject: () => void }) {
             className="flex items-center gap-2 p-1.5 rounded-lg hover:bg-white/10 transition-colors"
             aria-label="User menu"
           >
-            <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[var(--electric-violet)] to-[var(--luminous-cyan)] flex items-center justify-center">
+            <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#7765F7] to-[#65DDF2] flex items-center justify-center">
               <span className="text-[10px] font-bold text-white">U</span>
             </div>
-            <ChevronDown size={12} className="text-[var(--muted-blue-grey)] hidden sm:block" />
+            <ChevronDown size={12} className="text-[#AAB4D0] hidden sm:block" />
           </button>
           {profileOpen && (
             <div className="absolute right-0 top-full mt-2 w-48 glass-floating p-2 animate-scale-in">
               <div className="px-3 py-2 border-b border-white/10 mb-1">
                 <p className="text-xs font-medium text-white">Demo User</p>
-                <p className="text-[10px] text-[var(--muted-blue-grey)]">demo@glassui.app</p>
+                <p className="text-[10px] text-[#AAB4D0]">demo@glassui.app</p>
               </div>
               <button
                 onClick={() => { dispatch({ type: 'SET_VIEW', payload: 'settings' }); setProfileOpen(false); }}
@@ -289,29 +289,29 @@ export function GlobalSearch() {
       <div className="glass-floating relative w-full max-w-xl animate-scale-in">
         <div className="p-4 border-b border-white/10">
           <div className="flex items-center gap-3">
-            <Search size={18} className="text-[var(--muted-blue-grey)] flex-shrink-0" />
+            <Search size={18} className="text-[#AAB4D0] flex-shrink-0" />
             <input
               ref={inputRef}
               type="text"
               value={state.searchQuery}
               onChange={e => dispatch({ type: 'SET_SEARCH_QUERY', payload: e.target.value })}
               placeholder="Search projects and tasks..."
-              className="flex-1 bg-transparent text-sm text-white outline-none placeholder:text-[var(--muted-blue-grey)]"
+              className="flex-1 bg-transparent text-sm text-white outline-none placeholder:text-[#AAB4D0]"
               aria-label="Search"
             />
-            <kbd className="text-[10px] text-[var(--muted-blue-grey)] border border-white/10 rounded px-1.5 py-0.5">ESC</kbd>
+            <kbd className="text-[10px] text-[#AAB4D0] border border-white/10 rounded px-1.5 py-0.5">ESC</kbd>
           </div>
         </div>
         <div className="p-4 max-h-80 overflow-y-auto">
           {state.searchQuery.trim() === '' ? (
-            <p className="text-xs text-[var(--muted-blue-grey)] text-center py-4">Type to search projects and tasks</p>
+            <p className="text-xs text-[#AAB4D0] text-center py-4">Type to search projects and tasks</p>
           ) : results.projects.length === 0 && results.tasks.length === 0 ? (
-            <p className="text-xs text-[var(--muted-blue-grey)] text-center py-4">No results found</p>
+            <p className="text-xs text-[#AAB4D0] text-center py-4">No results found</p>
           ) : (
             <div className="space-y-3">
               {results.projects.length > 0 && (
                 <div>
-                  <p className="text-[10px] font-semibold text-[var(--muted-blue-grey)] uppercase tracking-wider mb-2">Projects</p>
+                  <p className="text-[10px] font-semibold text-[#AAB4D0] uppercase tracking-wider mb-2">Projects</p>
                   {results.projects.map(p => (
                     <button
                       key={p.id}
@@ -319,14 +319,14 @@ export function GlobalSearch() {
                       className="w-full text-left p-2 rounded-lg hover:bg-white/5 transition-colors"
                     >
                       <p className="text-sm text-white">{p.name}</p>
-                      <p className="text-[11px] text-[var(--muted-blue-grey)]">{p.description.slice(0, 60)}...</p>
+                      <p className="text-[11px] text-[#AAB4D0]">{p.description.slice(0, 60)}...</p>
                     </button>
                   ))}
                 </div>
               )}
               {results.tasks.length > 0 && (
                 <div>
-                  <p className="text-[10px] font-semibold text-[var(--muted-blue-grey)] uppercase tracking-wider mb-2">Tasks</p>
+                  <p className="text-[10px] font-semibold text-[#AAB4D0] uppercase tracking-wider mb-2">Tasks</p>
                   {results.tasks.map(t => {
                     const project = getProject(t.projectId);
                     return (
@@ -336,7 +336,7 @@ export function GlobalSearch() {
                         className="w-full text-left p-2 rounded-lg hover:bg-white/5 transition-colors"
                       >
                         <p className="text-sm text-white">{t.title}</p>
-                        <p className="text-[11px] text-[var(--muted-blue-grey)]">{project?.name}</p>
+                        <p className="text-[11px] text-[#AAB4D0]">{project?.name}</p>
                       </button>
                     );
                   })}
