@@ -28,7 +28,7 @@ export function Team() {
         <div className="lg:col-span-1">
           <GlassPanel level={2} className="p-5">
             <h3 className="text-sm font-semibold text-white mb-4 flex items-center gap-2">
-              <Users size={16} className="text-[var(--electric-violet)]" />
+              <Users size={16} className="text-[#7765F7]" />
               Members ({state.team.length})
             </h3>
             <div className="space-y-2">
@@ -40,7 +40,7 @@ export function Team() {
                     onClick={() => setSelectedMember(selectedMember === member.id ? null : member.id)}
                     className={`w-full text-left p-3 rounded-xl border transition-all ${
                       selectedMember === member.id
-                        ? 'border-[var(--electric-violet)]/30 bg-[var(--electric-violet)]/5'
+                        ? 'border-[#7765F7]/30 bg-[#7765F7]/5'
                         : 'border-white/5 hover:border-white/10 hover:bg-white/3'
                     }`}
                   >
@@ -48,13 +48,13 @@ export function Team() {
                       <Avatar name={member.name} color={member.avatarColor} size={36} />
                       <div className="flex-1 min-w-0">
                         <p className="text-xs font-medium text-white">{member.name}</p>
-                        <p className="text-[10px] text-[var(--muted-blue-grey)]">{member.role}</p>
+                        <p className="text-[10px] text-[#AAB4D0]">{member.role}</p>
                       </div>
                       <span className={`w-2 h-2 rounded-full flex-shrink-0 ${
                         member.status === 'active' ? 'bg-green-400' : member.status === 'away' ? 'bg-yellow-400' : 'bg-gray-500'
                       }`} />
                     </div>
-                    <div className="flex items-center gap-3 mt-2 text-[10px] text-[var(--muted-blue-grey)]">
+                    <div className="flex items-center gap-3 mt-2 text-[10px] text-[#AAB4D0]">
                       <span className="flex items-center gap-1"><ListTodo size={9} /> {stats.active} active</span>
                       <span className="flex items-center gap-1"><CheckCircle2 size={9} /> {stats.completed} done</span>
                       <span className="flex items-center gap-1"><FolderKanban size={9} /> {stats.projects} projects</span>
@@ -76,27 +76,27 @@ export function Team() {
                   <Avatar name={selectedMemberData.name} color={selectedMemberData.avatarColor} size={56} />
                   <div>
                     <h3 className="text-base font-semibold text-white">{selectedMemberData.name}</h3>
-                    <p className="text-sm text-[var(--muted-blue-grey)]">{selectedMemberData.role}</p>
+                    <p className="text-sm text-[#AAB4D0]">{selectedMemberData.role}</p>
                     <div className="flex items-center gap-2 mt-1">
                       <span className={`w-2 h-2 rounded-full ${
                         selectedMemberData.status === 'active' ? 'bg-green-400' : selectedMemberData.status === 'away' ? 'bg-yellow-400' : 'bg-gray-500'
                       }`} />
-                      <span className="text-[10px] text-[var(--muted-blue-grey)] capitalize">{selectedMemberData.status}</span>
+                      <span className="text-[10px] text-[#AAB4D0] capitalize">{selectedMemberData.status}</span>
                     </div>
                   </div>
                 </div>
                 <div className="grid grid-cols-3 gap-3">
                   <div className="text-center p-3 rounded-lg bg-white/3 border border-white/5">
                     <p className="text-lg font-bold text-white">{getMemberStats(selectedMemberData.id).active}</p>
-                    <p className="text-[10px] text-[var(--muted-blue-grey)]">Active Tasks</p>
+                    <p className="text-[10px] text-[#AAB4D0]">Active Tasks</p>
                   </div>
                   <div className="text-center p-3 rounded-lg bg-white/3 border border-white/5">
                     <p className="text-lg font-bold text-white">{getMemberStats(selectedMemberData.id).completed}</p>
-                    <p className="text-[10px] text-[var(--muted-blue-grey)]">Completed</p>
+                    <p className="text-[10px] text-[#AAB4D0]">Completed</p>
                   </div>
                   <div className="text-center p-3 rounded-lg bg-white/3 border border-white/5">
                     <p className="text-lg font-bold text-white">{getMemberStats(selectedMemberData.id).projects}</p>
-                    <p className="text-[10px] text-[var(--muted-blue-grey)]">Projects</p>
+                    <p className="text-[10px] text-[#AAB4D0]">Projects</p>
                   </div>
                 </div>
               </GlassPanel>
@@ -113,11 +113,11 @@ export function Team() {
                       return (
                         <div key={task.id} className="flex items-center gap-3 p-2.5 rounded-lg border border-white/5">
                           <div className={`w-2 h-2 rounded-full flex-shrink-0 ${
-                            task.priority === 'high' ? 'bg-orange-400' : task.priority === 'medium' ? 'bg-[var(--soft-lavender)]' : 'bg-[var(--aqua-mint)]'
+                            task.priority === 'high' ? 'bg-orange-400' : task.priority === 'medium' ? 'bg-[#B6AEFF]' : 'bg-[#87E8D0]'
                           }`} />
                           <div className="flex-1 min-w-0">
-                            <p className={`text-xs ${task.status === 'done' ? 'line-through text-[var(--muted-blue-grey)]' : 'text-white'}`}>{task.title}</p>
-                            <p className="text-[10px] text-[var(--muted-blue-grey)]">{project?.name}</p>
+                            <p className={`text-xs ${task.status === 'done' ? 'line-through text-[#AAB4D0]' : 'text-white'}`}>{task.title}</p>
+                            <p className="text-[10px] text-[#AAB4D0]">{project?.name}</p>
                           </div>
                           <StatusBadge status={task.status} />
                         </div>
@@ -138,7 +138,7 @@ export function Team() {
                       <div key={project.id} className="flex items-center gap-3 p-2.5 rounded-lg border border-white/5">
                         <div className="flex-1 min-w-0">
                           <p className="text-xs text-white">{project.name}</p>
-                          <p className="text-[10px] text-[var(--muted-blue-grey)]">{project.progress}% complete</p>
+                          <p className="text-[10px] text-[#AAB4D0]">{project.progress}% complete</p>
                         </div>
                         <StatusBadge status={project.status} />
                       </div>
@@ -150,8 +150,8 @@ export function Team() {
           ) : (
             <GlassPanel level={2} className="p-12 flex items-center justify-center">
               <div className="text-center">
-                <Users size={40} className="mx-auto mb-4 text-[var(--muted-blue-grey)] opacity-30" />
-                <p className="text-sm text-[var(--muted-blue-grey)]">Select a team member to view their details</p>
+                <Users size={40} className="mx-auto mb-4 text-[#AAB4D0] opacity-30" />
+                <p className="text-sm text-[#AAB4D0]">Select a team member to view their details</p>
               </div>
             </GlassPanel>
           )}

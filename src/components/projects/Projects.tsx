@@ -121,8 +121,8 @@ function ProjectForm({ project, onSave, onClose }: { project?: Project; onSave: 
               onClick={() => toggleMember(member.id)}
               className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[11px] border transition-all ${
                 teamMembers.includes(member.id)
-                  ? 'border-[var(--electric-violet)]/50 bg-[var(--electric-violet)]/10 text-white'
-                  : 'border-white/10 text-[var(--muted-blue-grey)] hover:border-white/20'
+                  ? 'border-[#7765F7]/50 bg-[#7765F7]/10 text-white'
+                  : 'border-white/10 text-[#AAB4D0] hover:border-white/20'
               }`}
             >
               <Avatar name={member.name} color={member.avatarColor} size={18} />
@@ -150,12 +150,12 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
         <h3 className="text-sm font-semibold text-white">{project.name}</h3>
         <StatusBadge status={project.status} />
       </div>
-      <p className="text-[11px] text-[var(--muted-blue-grey)] mb-3 line-clamp-2">{project.description}</p>
+      <p className="text-[11px] text-[#AAB4D0] mb-3 line-clamp-2">{project.description}</p>
       <div className="flex items-center gap-2 mb-3">
         <div className="flex-1">
           <ProgressBar value={project.progress} />
         </div>
-        <span className="text-[11px] text-[var(--muted-blue-grey)] font-medium">{project.progress}%</span>
+        <span className="text-[11px] text-[#AAB4D0] font-medium">{project.progress}%</span>
       </div>
       <div className="flex items-center justify-between">
         <div className="flex -space-x-1.5">
@@ -164,7 +164,7 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
             return member ? <Avatar key={id} name={member.name} color={member.avatarColor} size={22} /> : null;
           })}
         </div>
-        <div className="flex items-center gap-3 text-[10px] text-[var(--muted-blue-grey)]">
+        <div className="flex items-center gap-3 text-[10px] text-[#AAB4D0]">
           <span className="flex items-center gap-1"><ListTodo size={10} /> {taskCount} tasks</span>
           {project.dueDate && <span className="flex items-center gap-1"><Calendar size={10} /> {formatDate(project.dueDate)}</span>}
         </div>
@@ -217,7 +217,7 @@ function ProjectDetail({ projectId, onBack, onNewTask }: { projectId: string; on
     <div className="space-y-5 animate-fade-in-up">
       {/* Header */}
       <GlassPanel level={2} className="p-5">
-        <button onClick={onBack} className="flex items-center gap-1.5 text-xs text-[var(--muted-blue-grey)] hover:text-white mb-4 transition-colors">
+        <button onClick={onBack} className="flex items-center gap-1.5 text-xs text-[#AAB4D0] hover:text-white mb-4 transition-colors">
           <ArrowLeft size={14} /> Back to Projects
         </button>
         <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
@@ -226,8 +226,8 @@ function ProjectDetail({ projectId, onBack, onNewTask }: { projectId: string; on
               <h2 className="text-lg font-semibold text-white">{project.name}</h2>
               <StatusBadge status={project.status} />
             </div>
-            <p className="text-sm text-[var(--muted-blue-grey)] mb-3">{project.description}</p>
-            <div className="flex flex-wrap items-center gap-4 text-[11px] text-[var(--muted-blue-grey)]">
+            <p className="text-sm text-[#AAB4D0] mb-3">{project.description}</p>
+            <div className="flex flex-wrap items-center gap-4 text-[11px] text-[#AAB4D0]">
               <span className="flex items-center gap-1"><Calendar size={12} /> Due: {project.dueDate ? formatDate(project.dueDate) : 'No date'}</span>
               <span className="flex items-center gap-1"><Users size={12} /> {members.length} members</span>
               <span className="flex items-center gap-1"><ListTodo size={12} /> {tasks.length} tasks</span>
@@ -249,7 +249,7 @@ function ProjectDetail({ projectId, onBack, onNewTask }: { projectId: string; on
               key={s}
               onClick={() => handleStatusChange(s)}
               className={`px-2.5 py-1 rounded-lg text-[10px] font-medium border transition-all ${
-                project.status === s ? 'border-[var(--electric-violet)]/50 bg-[var(--electric-violet)]/15 text-white' : 'border-white/10 text-[var(--muted-blue-grey)] hover:border-white/20'
+                project.status === s ? 'border-[#7765F7]/50 bg-[#7765F7]/15 text-white' : 'border-white/10 text-[#AAB4D0] hover:border-white/20'
               }`}
             >
               {getStatusLabel(s)}
@@ -267,7 +267,7 @@ function ProjectDetail({ projectId, onBack, onNewTask }: { projectId: string; on
               <Avatar name={m.name} color={m.avatarColor} size={28} />
               <div>
                 <p className="text-xs text-white font-medium">{m.name}</p>
-                <p className="text-[10px] text-[var(--muted-blue-grey)]">{m.role}</p>
+                <p className="text-[10px] text-[#AAB4D0]">{m.role}</p>
               </div>
             </div>
           ))}
@@ -292,14 +292,14 @@ function ProjectDetail({ projectId, onBack, onNewTask }: { projectId: string; on
                   aria-label={task.status === 'done' ? 'Mark as incomplete' : 'Mark as complete'}
                 >
                   {task.status === 'done' ? (
-                    <CheckCircle2 size={18} className="text-[var(--aqua-mint)]" />
+                    <CheckCircle2 size={18} className="text-[#87E8D0]" />
                   ) : (
-                    <Circle size={18} className="text-[var(--muted-blue-grey)] hover:text-white transition-colors" />
+                    <Circle size={18} className="text-[#AAB4D0] hover:text-white transition-colors" />
                   )}
                 </button>
                 <div className="flex-1 min-w-0">
-                  <p className={`text-xs ${task.status === 'done' ? 'line-through text-[var(--muted-blue-grey)]' : 'text-white'}`}>{task.title}</p>
-                  <p className="text-[10px] text-[var(--muted-blue-grey)]">{getTaskStatusLabel(task.status)} · {task.priority} priority</p>
+                  <p className={`text-xs ${task.status === 'done' ? 'line-through text-[#AAB4D0]' : 'text-white'}`}>{task.title}</p>
+                  <p className="text-[10px] text-[#AAB4D0]">{getTaskStatusLabel(task.status)} · {task.priority} priority</p>
                 </div>
                 <StatusBadge status={task.priority} />
               </div>

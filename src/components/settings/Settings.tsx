@@ -41,12 +41,12 @@ export function Settings() {
       {/* Interactive Glass Lab */}
       <GlassPanel level={2} className="p-6 mb-5">
         <div className="flex items-center gap-3 mb-5">
-          <div className="p-2 rounded-lg bg-[var(--electric-violet)]/10">
-            <Sparkles size={20} className="text-[var(--electric-violet)]" />
+          <div className="p-2 rounded-lg bg-[#7765F7]/10">
+            <Sparkles size={20} className="text-[#7765F7]" />
           </div>
           <div>
             <h3 className="text-sm font-semibold text-white">Interactive Glass Lab</h3>
-            <p className="text-[11px] text-[var(--muted-blue-grey)]">Customize the appearance of glass surfaces</p>
+            <p className="text-[11px] text-[#AAB4D0]">Customize the appearance of glass surfaces</p>
           </div>
         </div>
 
@@ -54,7 +54,7 @@ export function Settings() {
           {/* Blur Intensity */}
           <div>
             <div className="flex items-center justify-between mb-2">
-              <label className="text-xs font-medium text-[var(--muted-blue-grey)] flex items-center gap-2">
+              <label className="text-xs font-medium text-[#AAB4D0] flex items-center gap-2">
                 <Eye size={12} /> Blur Intensity
               </label>
               <span className="text-xs text-white font-mono">{appearance.blurIntensity}px</span>
@@ -65,18 +65,18 @@ export function Settings() {
               max="32"
               value={appearance.blurIntensity}
               onChange={e => dispatch({ type: 'UPDATE_APPEARANCE', payload: { blurIntensity: Number(e.target.value) } })}
-              className="w-full h-1.5 rounded-full appearance-none bg-white/10 cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[var(--electric-violet)] [&::-webkit-slider-thumb]:cursor-pointer"
+              className="w-full h-1.5 rounded-full appearance-none bg-white/10 cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#7765F7] [&::-webkit-slider-thumb]:cursor-pointer"
             />
             <div className="flex justify-between mt-1">
-              <span className="text-[9px] text-[var(--muted-blue-grey)]">Subtle</span>
-              <span className="text-[9px] text-[var(--muted-blue-grey)]">Strong</span>
+              <span className="text-[9px] text-[#AAB4D0]">Subtle</span>
+              <span className="text-[9px] text-[#AAB4D0]">Strong</span>
             </div>
           </div>
 
           {/* Surface Opacity */}
           <div>
             <div className="flex items-center justify-between mb-2">
-              <label className="text-xs font-medium text-[var(--muted-blue-grey)] flex items-center gap-2">
+              <label className="text-xs font-medium text-[#AAB4D0] flex items-center gap-2">
                 <Sliders size={12} /> Surface Opacity
               </label>
               <span className="text-xs text-white font-mono">{Math.round(appearance.surfaceOpacity * 100)}%</span>
@@ -87,17 +87,17 @@ export function Settings() {
               max="25"
               value={Math.round(appearance.surfaceOpacity * 100)}
               onChange={e => dispatch({ type: 'UPDATE_APPEARANCE', payload: { surfaceOpacity: Number(e.target.value) / 100 } })}
-              className="w-full h-1.5 rounded-full appearance-none bg-white/10 cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[var(--electric-violet)] [&::-webkit-slider-thumb]:cursor-pointer"
+              className="w-full h-1.5 rounded-full appearance-none bg-white/10 cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#7765F7] [&::-webkit-slider-thumb]:cursor-pointer"
             />
             <div className="flex justify-between mt-1">
-              <span className="text-[9px] text-[var(--muted-blue-grey)]">Transparent</span>
-              <span className="text-[9px] text-[var(--muted-blue-grey)]">Opaque</span>
+              <span className="text-[9px] text-[#AAB4D0]">Transparent</span>
+              <span className="text-[9px] text-[#AAB4D0]">Opaque</span>
             </div>
           </div>
 
           {/* Accent Color */}
           <div>
-            <label className="text-xs font-medium text-[var(--muted-blue-grey)] flex items-center gap-2 mb-3">
+            <label className="text-xs font-medium text-[#AAB4D0] flex items-center gap-2 mb-3">
               <Palette size={12} /> Accent Color
             </label>
             <div className="flex gap-3">
@@ -130,15 +130,15 @@ export function Settings() {
         <h3 className="text-sm font-semibold text-white mb-4">Preview</h3>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div className="glass-ambient p-4 rounded-xl">
-            <p className="text-[10px] text-[var(--muted-blue-grey)] mb-1">Level 1</p>
+            <p className="text-[10px] text-[#AAB4D0] mb-1">Level 1</p>
             <p className="text-xs text-white">Ambient Glass</p>
           </div>
           <div className="glass-primary p-4 rounded-xl">
-            <p className="text-[10px] text-[var(--muted-blue-grey)] mb-1">Level 2</p>
+            <p className="text-[10px] text-[#AAB4D0] mb-1">Level 2</p>
             <p className="text-xs text-white">Primary Glass</p>
           </div>
           <div className="glass-floating p-4 rounded-xl">
-            <p className="text-[10px] text-[var(--muted-blue-grey)] mb-1">Level 3</p>
+            <p className="text-[10px] text-[#AAB4D0] mb-1">Level 3</p>
             <p className="text-xs text-white">Floating Glass</p>
           </div>
         </div>
@@ -147,7 +147,7 @@ export function Settings() {
       {/* Data Management */}
       <GlassPanel level={2} className="p-6">
         <h3 className="text-sm font-semibold text-white mb-3">Data Management</h3>
-        <p className="text-xs text-[var(--muted-blue-grey)] mb-4">
+        <p className="text-xs text-[#AAB4D0] mb-4">
           This workspace uses local demonstration data. Reset to restore all sample projects, tasks, and activity.
         </p>
         <button onClick={handleResetData} className="btn-glass btn-danger text-xs">
@@ -157,10 +157,10 @@ export function Settings() {
 
       {/* About */}
       <div className="mt-6 text-center">
-        <p className="text-[10px] text-[var(--muted-blue-grey)]">
+        <p className="text-[10px] text-[#AAB4D0]">
           GLASS UI Dashboard · Demonstration Workspace · All data is local
         </p>
-        <p className="text-[10px] text-[var(--muted-blue-grey)] mt-1">
+        <p className="text-[10px] text-[#AAB4D0] mt-1">
           Your work, in a clearer light.
         </p>
       </div>
