@@ -45,25 +45,7 @@ type Action =
 const STORAGE_KEY = 'glass-ui-dashboard';
 
 function loadState(): AppState {
-  try {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) {
-      const parsed = JSON.parse(stored);
-      if (parsed && parsed.projects && parsed.tasks) {
-        return {
-          ...parsed,
-          currentView: 'overview',
-          selectedProjectId: null,
-          searchOpen: false,
-          searchQuery: '',
-          mobileNavOpen: false,
-        };
-      }
-    }
-  } catch (e) {
-    // Invalid stored data, use defaults
-  }
-  return {
+  const defaultState: AppState = {
     projects: sampleProjects,
     tasks: sampleTasks,
     team: sampleTeam,
@@ -76,6 +58,27 @@ function loadState(): AppState {
     searchQuery: '',
     mobileNavOpen: false,
   };
+
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      if (parsed && Array.isArray(parsed.projects) && Array.isArray(parsed.tasks)) {
+        return {
+          ...defaultState,
+          ...parsed,
+          currentView: 'overview',
+          selectedProjectId: null,
+          searchOpen: false,
+          searchQuery: '',
+          mobileNavOpen: false,
+        };
+      }
+    }
+  } catch (e) {
+    console.warn('Failed to load state from localStorage:', e);
+  }
+  return defaultState;
 }
 
 function reducer(state: AppState, action: Action): AppState {

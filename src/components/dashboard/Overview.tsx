@@ -14,7 +14,7 @@ function WelcomePanel({ onNewProject }: { onNewProject: () => void }) {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h2 className="text-xl font-semibold text-white mb-1">{greeting}.</h2>
-          <p className="text-sm text-[var(--muted-blue-grey)]">
+          <p className="text-sm text-[#AAB4D0]">
             Here's what's happening in your workspace this week.
           </p>
         </div>
@@ -33,10 +33,10 @@ function MetricsGrid() {
   const metrics = getMetrics();
 
   const cards = [
-    { label: 'Active Projects', value: metrics.activeProjects, icon: FolderKanban, trend: '+2 this month', color: 'var(--electric-violet)' },
-    { label: 'Open Tasks', value: metrics.openTasks, icon: ListTodo, trend: 'Across all projects', color: 'var(--luminous-cyan)' },
-    { label: 'Completed This Week', value: metrics.completedThisWeek, icon: CheckCircle2, trend: 'Sample data', color: 'var(--aqua-mint)' },
-    { label: 'Team Momentum', value: `${metrics.teamMomentum}%`, icon: TrendingUp, trend: 'Overall completion rate', color: 'var(--soft-lavender)' },
+    { label: 'Active Projects', value: metrics.activeProjects, icon: FolderKanban, trend: '+2 this month', color: '#7765F7' },
+    { label: 'Open Tasks', value: metrics.openTasks, icon: ListTodo, trend: 'Across all projects', color: '#65DDF2' },
+    { label: 'Completed This Week', value: metrics.completedThisWeek, icon: CheckCircle2, trend: 'Sample data', color: '#87E8D0' },
+    { label: 'Team Momentum', value: `${metrics.teamMomentum}%`, icon: TrendingUp, trend: 'Overall completion rate', color: '#B6AEFF' },
   ];
 
   return (
@@ -49,8 +49,8 @@ function MetricsGrid() {
             </div>
           </div>
           <p className="text-2xl font-bold text-white mb-0.5">{card.value}</p>
-          <p className="text-xs text-[var(--muted-blue-grey)] mb-1">{card.label}</p>
-          <p className="text-[10px] text-[var(--muted-blue-grey)] opacity-70">{card.trend}</p>
+          <p className="text-xs text-[#AAB4D0] mb-1">{card.label}</p>
+          <p className="text-[10px] text-[#AAB4D0] opacity-70">{card.trend}</p>
         </GlassPanel>
       ))}
     </div>
@@ -68,7 +68,7 @@ function ProjectOverview({ onProjectClick }: { onProjectClick: (id: string) => v
         <h3 className="text-sm font-semibold text-white">Active Projects</h3>
         <button
           onClick={() => dispatch({ type: 'SET_VIEW', payload: 'projects' })}
-          className="text-xs text-[var(--electric-violet)] hover:underline flex items-center gap-1"
+          className="text-xs text-[#7765F7] hover:underline flex items-center gap-1"
         >
           View all <ArrowRight size={12} />
         </button>
@@ -84,12 +84,12 @@ function ProjectOverview({ onProjectClick }: { onProjectClick: (id: string) => v
               <h4 className="text-sm font-medium text-white">{project.name}</h4>
               <StatusBadge status={project.status} />
             </div>
-            <p className="text-[11px] text-[var(--muted-blue-grey)] mb-2 line-clamp-1">{project.description}</p>
+            <p className="text-[11px] text-[#AAB4D0] mb-2 line-clamp-1">{project.description}</p>
             <div className="flex items-center gap-3">
               <div className="flex-1">
                 <ProgressBar value={project.progress} />
               </div>
-              <span className="text-[11px] text-[var(--muted-blue-grey)] font-medium">{project.progress}%</span>
+              <span className="text-[11px] text-[#AAB4D0] font-medium">{project.progress}%</span>
             </div>
           </button>
         ))}
@@ -107,7 +107,7 @@ function TaskOverview() {
     <GlassPanel level={2} className="p-5">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-sm font-semibold text-white">Recent Tasks</h3>
-        <span className="text-[10px] text-[var(--muted-blue-grey)]">{state.tasks.filter(t => t.status !== 'done').length} open</span>
+        <span className="text-[10px] text-[#AAB4D0]">{state.tasks.filter(t => t.status !== 'done').length} open</span>
       </div>
       <div className="space-y-2">
         {recentTasks.map(task => {
@@ -115,11 +115,11 @@ function TaskOverview() {
           return (
             <div key={task.id} className="flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors">
               <div className={`w-2 h-2 rounded-full flex-shrink-0 ${
-                task.priority === 'high' ? 'bg-orange-400' : task.priority === 'medium' ? 'bg-[var(--soft-lavender)]' : 'bg-[var(--aqua-mint)]'
+                task.priority === 'high' ? 'bg-orange-400' : task.priority === 'medium' ? 'bg-[#B6AEFF]' : 'bg-[#87E8D0]'
               }`} />
               <div className="flex-1 min-w-0">
                 <p className="text-xs text-white truncate">{task.title}</p>
-                <p className="text-[10px] text-[var(--muted-blue-grey)]">{project?.name}</p>
+                <p className="text-[10px] text-[#AAB4D0]">{project?.name}</p>
               </div>
               <StatusBadge status={task.status} />
             </div>
@@ -147,11 +147,11 @@ function ActivityFeed() {
 
   const getIconColor = (type: string) => {
     switch (type) {
-      case 'task-completed': return 'text-[var(--aqua-mint)] bg-[var(--aqua-mint)]/10';
-      case 'task-added': return 'text-[var(--luminous-cyan)] bg-[var(--luminous-cyan)]/10';
-      case 'project-created': return 'text-[var(--electric-violet)] bg-[var(--electric-violet)]/10';
-      case 'project-status-changed': return 'text-[var(--soft-lavender)] bg-[var(--soft-lavender)]/10';
-      default: return 'text-[var(--muted-blue-grey)] bg-white/5';
+      case 'task-completed': return 'text-[#87E8D0] bg-[#87E8D0]/10';
+      case 'task-added': return 'text-[#65DDF2] bg-[#65DDF2]/10';
+      case 'project-created': return 'text-[#7765F7] bg-[#7765F7]/10';
+      case 'project-status-changed': return 'text-[#B6AEFF] bg-[#B6AEFF]/10';
+      default: return 'text-[#AAB4D0] bg-white/5';
     }
   };
 
@@ -166,7 +166,7 @@ function ActivityFeed() {
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-xs text-white leading-relaxed">{event.description}</p>
-              <p className="text-[10px] text-[var(--muted-blue-grey)] mt-0.5 flex items-center gap-1">
+              <p className="text-[10px] text-[#AAB4D0] mt-0.5 flex items-center gap-1">
                 <Clock size={9} />
                 {formatRelativeTime(event.timestamp)}
               </p>
@@ -193,13 +193,13 @@ function TeamOverview() {
               <Avatar name={member.name} color={member.avatarColor} size={30} />
               <div className="flex-1 min-w-0">
                 <p className="text-xs text-white font-medium truncate">{member.name}</p>
-                <p className="text-[10px] text-[var(--muted-blue-grey)]">{member.role}</p>
+                <p className="text-[10px] text-[#AAB4D0]">{member.role}</p>
               </div>
               <div className="flex items-center gap-1.5">
                 <span className={`w-2 h-2 rounded-full ${
                   member.status === 'active' ? 'bg-green-400' : member.status === 'away' ? 'bg-yellow-400' : 'bg-gray-500'
                 }`} />
-                <span className="text-[10px] text-[var(--muted-blue-grey)]">{memberTasks.length} tasks</span>
+                <span className="text-[10px] text-[#AAB4D0]">{memberTasks.length} tasks</span>
               </div>
             </div>
           );

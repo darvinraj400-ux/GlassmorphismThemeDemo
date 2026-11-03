@@ -6,20 +6,26 @@ import { BarChart3, TrendingUp, PieChart } from 'lucide-react';
 // ===== SVG BAR CHART =====
 function BarChart({ data, label }: { data: { label: string; value: number; color: string }[]; label: string }) {
   const maxValue = Math.max(...data.map(d => d.value), 1);
-  const barWidth = 100 / data.length;
+  
+  // Truncate long labels
+  const truncateLabel = (text: string, maxLength: number = 12) => {
+    if (text.length <= maxLength) return text;
+    return text.substring(0, maxLength - 1) + '…';
+  };
 
   return (
     <div className="chart-container" role="img" aria-label={label}>
-      <svg viewBox="0 0 400 200" className="w-full h-auto">
+      <svg viewBox="0 0 400 220" className="w-full h-auto">
         {data.map((d, i) => {
-          const barH = (d.value / maxValue) * 150;
+          const barH = (d.value / maxValue) * 140;
           const x = i * (400 / data.length) + 10;
           const width = (400 / data.length) - 20;
+          const truncatedLabel = truncateLabel(d.label);
           return (
             <g key={i}>
               <rect
                 x={x}
-                y={180 - barH}
+                y={160 - barH}
                 width={width}
                 height={barH}
                 rx={4}
@@ -28,16 +34,17 @@ function BarChart({ data, label }: { data: { label: string; value: number; color
               />
               <text
                 x={x + width / 2}
-                y={195}
-                textAnchor="middle"
-                className="fill-[var(--muted-blue-grey)]"
-                fontSize="10"
+                y={175}
+                textAnchor="end"
+                className="fill-[#AAB4D0]"
+                fontSize="9"
+                transform={`rotate(-45 ${x + width / 2} 175)`}
               >
-                {d.label}
+                {truncatedLabel}
               </text>
               <text
                 x={x + width / 2}
-                y={175 - barH}
+                y={155 - barH}
                 textAnchor="middle"
                 className="fill-white"
                 fontSize="11"
@@ -90,7 +97,7 @@ function DonutChart({ data, label }: { data: { label: string; value: number; col
         <text x="100" y="95" textAnchor="middle" className="fill-white" fontSize="20" fontWeight="700">
           {total}
         </text>
-        <text x="100" y="115" textAnchor="middle" className="fill-[var(--muted-blue-grey)]" fontSize="10">
+        <text x="100" y="115" textAnchor="middle" className="fill-[#AAB4D0]" fontSize="10">
           Total
         </text>
       </svg>
@@ -98,7 +105,7 @@ function DonutChart({ data, label }: { data: { label: string; value: number; col
         {data.map((d, i) => (
           <div key={i} className="flex items-center gap-1.5">
             <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: d.color }} />
-            <span className="text-[10px] text-[var(--muted-blue-grey)]">{d.label} ({d.value})</span>
+            <span className="text-[10px] text-[#AAB4D0]">{d.label} ({d.value})</span>
           </div>
         ))}
       </div>
@@ -116,7 +123,7 @@ function HorizontalBarChart({ data, label }: { data: { label: string; value: num
         <div key={i}>
           <div className="flex items-center justify-between mb-1">
             <span className="text-[11px] text-white">{d.label}</span>
-            <span className="text-[11px] text-[var(--muted-blue-grey)]">{d.value}</span>
+            <span className="text-[11px] text-[#AAB4D0]">{d.value}</span>
           </div>
           <div className="h-2 rounded-full bg-white/5 overflow-hidden">
             <div
@@ -173,7 +180,7 @@ export function Insights() {
     <div className="animate-fade-in-up">
       <div className="flex items-center justify-between mb-5">
         <h2 className="text-lg font-semibold text-white">Insights</h2>
-        <span className="text-[10px] text-[var(--muted-blue-grey)] bg-white/5 px-2.5 py-1 rounded-full border border-white/10">
+        <span className="text-[10px] text-[#AAB4D0] bg-white/5 px-2.5 py-1 rounded-full border border-white/10">
           Demo data · Local workspace
         </span>
       </div>
@@ -185,7 +192,7 @@ export function Insights() {
           {/* Tasks by Status */}
           <GlassPanel level={2} className="p-5">
             <h3 className="text-sm font-semibold text-white mb-4 flex items-center gap-2">
-              <PieChart size={16} className="text-[var(--luminous-cyan)]" />
+              <PieChart size={16} className="text-[#65DDF2]" />
               Tasks by Status
             </h3>
             <DonutChart data={tasksByStatus} label="Tasks grouped by their current status" />
@@ -194,7 +201,7 @@ export function Insights() {
           {/* Tasks by Priority */}
           <GlassPanel level={2} className="p-5">
             <h3 className="text-sm font-semibold text-white mb-4 flex items-center gap-2">
-              <BarChart3 size={16} className="text-[var(--electric-violet)]" />
+              <BarChart3 size={16} className="text-[#7765F7]" />
               Tasks by Priority
             </h3>
             <BarChart data={tasksByPriority} label="Tasks grouped by priority level" />
@@ -203,7 +210,7 @@ export function Insights() {
           {/* Project Progress */}
           <GlassPanel level={2} className="p-5">
             <h3 className="text-sm font-semibold text-white mb-4 flex items-center gap-2">
-              <TrendingUp size={16} className="text-[var(--aqua-mint)]" />
+              <TrendingUp size={16} className="text-[#87E8D0]" />
               Project Progress
             </h3>
             <HorizontalBarChart data={projectProgress} label="Progress percentage for each active project" />
@@ -212,7 +219,7 @@ export function Insights() {
           {/* Team Workload */}
           <GlassPanel level={2} className="p-5">
             <h3 className="text-sm font-semibold text-white mb-4 flex items-center gap-2">
-              <BarChart3 size={16} className="text-[var(--soft-lavender)]" />
+              <BarChart3 size={16} className="text-[#B6AEFF]" />
               Team Workload
             </h3>
             {workloadByMember.length > 0 ? (
@@ -225,7 +232,7 @@ export function Insights() {
           {/* Tasks by Project */}
           <GlassPanel level={2} className="p-5 lg:col-span-2">
             <h3 className="text-sm font-semibold text-white mb-4 flex items-center gap-2">
-              <BarChart3 size={16} className="text-[var(--electric-violet)]" />
+              <BarChart3 size={16} className="text-[#7765F7]" />
               Tasks by Project
             </h3>
             {tasksByProject.length > 0 ? (

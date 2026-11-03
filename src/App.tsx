@@ -40,26 +40,26 @@ function AppContent() {
   };
 
   return (
-    <div className="min-h-screen relative">
-      {/* Skip Link */}
-      <a href="#main-content" className="skip-link">Skip to main content</a>
-
-      {/* Atmospheric Background */}
+    <>
+      {/* Atmospheric Background - fixed behind everything */}
       <div className="atmospheric-bg" aria-hidden="true">
         <div className="atmospheric-orb atmospheric-orb-1" />
         <div className="atmospheric-orb atmospheric-orb-2" />
         <div className="atmospheric-orb atmospheric-orb-3" />
       </div>
 
+      {/* Skip Link */}
+      <a href="#main-content" className="skip-link">Skip to main content</a>
+
       {/* Application Shell */}
-      <div className="relative z-10 flex min-h-screen">
+      <div style={{ position: 'relative', zIndex: 10, display: 'flex', minHeight: '100vh', width: '100%' }}>
         {/* Sidebar */}
         <Sidebar />
 
         {/* Main Content */}
-        <div className="flex-1 flex flex-col min-w-0">
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0, width: '100%' }}>
           <Header onNewProject={handleNewProject} />
-          <main id="main-content" className="flex-1 p-4 lg:p-6 pb-20">
+          <main id="main-content" style={{ flex: 1, padding: '16px', paddingBottom: '80px' }} className="lg:p-6">
             {renderView()}
           </main>
         </div>
@@ -76,7 +76,7 @@ function AppContent() {
 
       {/* Mobile Bottom Nav */}
       <MobileBottomNav />
-    </div>
+    </>
   );
 }
 
