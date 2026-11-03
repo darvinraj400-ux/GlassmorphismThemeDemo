@@ -21,7 +21,7 @@ function TaskFilters({ statusFilter, setStatusFilter, priorityFilter, setPriorit
   return (
     <div className="flex flex-col sm:flex-row gap-3 mb-5">
       <div className="relative flex-1">
-        <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--muted-blue-grey)]" />
+        <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#AAB4D0]" />
         <input
           type="text"
           value={searchQuery}
@@ -60,17 +60,17 @@ function TaskRow({ task, onToggle, onEdit, onDelete }: { task: Task; onToggle: (
     <div className="flex items-center gap-3 p-3 rounded-xl border border-white/5 hover:border-white/10 hover:bg-white/3 transition-all group">
       <button onClick={onToggle} className="flex-shrink-0" aria-label={task.status === 'done' ? 'Mark as incomplete' : 'Mark as complete'}>
         {task.status === 'done' ? (
-          <CheckCircle2 size={18} className="text-[var(--aqua-mint)]" />
+          <CheckCircle2 size={18} className="text-[#87E8D0]" />
         ) : (
-          <Circle size={18} className="text-[var(--muted-blue-grey)] hover:text-[var(--electric-violet)] transition-colors" />
+          <Circle size={18} className="text-[#AAB4D0] hover:text-[#7765F7] transition-colors" />
         )}
       </button>
       <div className="flex-1 min-w-0">
-        <p className={`text-sm ${task.status === 'done' ? 'line-through text-[var(--muted-blue-grey)]' : 'text-white'}`}>{task.title}</p>
+        <p className={`text-sm ${task.status === 'done' ? 'line-through text-[#AAB4D0]' : 'text-white'}`}>{task.title}</p>
         <div className="flex items-center gap-2 mt-1">
-          <span className="text-[10px] text-[var(--muted-blue-grey)]">{project?.name}</span>
+          <span className="text-[10px] text-[#AAB4D0]">{project?.name}</span>
           {task.dueDate && (
-            <span className="text-[10px] text-[var(--muted-blue-grey)] flex items-center gap-0.5">
+            <span className="text-[10px] text-[#AAB4D0] flex items-center gap-0.5">
               <Calendar size={9} /> {task.dueDate}
             </span>
           )}
@@ -83,10 +83,10 @@ function TaskRow({ task, onToggle, onEdit, onDelete }: { task: Task; onToggle: (
       </div>
       <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
         <button onClick={onEdit} className="p-1.5 rounded-lg hover:bg-white/10" aria-label="Edit task">
-          <Edit2 size={12} className="text-[var(--muted-blue-grey)]" />
+          <Edit2 size={12} className="text-[#AAB4D0]" />
         </button>
         <button onClick={onDelete} className="p-1.5 rounded-lg hover:bg-red-500/10" aria-label="Delete task">
-          <Trash2 size={12} className="text-[var(--muted-blue-grey)] hover:text-red-400" />
+          <Trash2 size={12} className="text-[#AAB4D0] hover:text-red-400" />
         </button>
       </div>
     </div>
@@ -109,7 +109,7 @@ function BoardView({ tasks, onToggle, onEdit }: { tasks: Task[]; onToggle: (id: 
           <GlassPanel key={col.status} level={1} className="p-4">
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-xs font-semibold text-white">{col.label}</h3>
-              <span className="text-[10px] text-[var(--muted-blue-grey)] bg-white/5 px-2 py-0.5 rounded-full">{colTasks.length}</span>
+              <span className="text-[10px] text-[#AAB4D0] bg-white/5 px-2 py-0.5 rounded-full">{colTasks.length}</span>
             </div>
             <div className="space-y-2">
               {colTasks.map(task => (
@@ -119,7 +119,7 @@ function BoardView({ tasks, onToggle, onEdit }: { tasks: Task[]; onToggle: (id: 
                     <StatusBadge status={task.priority} />
                     <button
                       onClick={(e) => { e.stopPropagation(); onToggle(task.id); }}
-                      className="text-[10px] text-[var(--muted-blue-grey)] hover:text-white"
+                      className="text-[10px] text-[#AAB4D0] hover:text-white"
                     >
                       {task.status === 'done' ? 'Reopen' : 'Complete'}
                     </button>
@@ -127,7 +127,7 @@ function BoardView({ tasks, onToggle, onEdit }: { tasks: Task[]; onToggle: (id: 
                 </div>
               ))}
               {colTasks.length === 0 && (
-                <p className="text-[10px] text-[var(--muted-blue-grey)] text-center py-4">No tasks</p>
+                <p className="text-[10px] text-[#AAB4D0] text-center py-4">No tasks</p>
               )}
             </div>
           </GlassPanel>
@@ -182,14 +182,14 @@ export function Tasks() {
           <div className="flex border border-white/10 rounded-lg overflow-hidden">
             <button
               onClick={() => setViewMode('list')}
-              className={`p-2 ${viewMode === 'list' ? 'bg-white/10 text-white' : 'text-[var(--muted-blue-grey)]'}`}
+              className={`p-2 ${viewMode === 'list' ? 'bg-white/10 text-white' : 'text-[#AAB4D0]'}`}
               aria-label="List view"
             >
               <List size={14} />
             </button>
             <button
               onClick={() => setViewMode('board')}
-              className={`p-2 ${viewMode === 'board' ? 'bg-white/10 text-white' : 'text-[var(--muted-blue-grey)]'}`}
+              className={`p-2 ${viewMode === 'board' ? 'bg-white/10 text-white' : 'text-[#AAB4D0]'}`}
               aria-label="Board view"
             >
               <LayoutGrid size={14} />

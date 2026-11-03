@@ -571,6 +571,34 @@ body {
   }
 }
 
+/* ===== SAFE AREA SUPPORT ===== */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.safe-area-top {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+/* ===== MOBILE RESPONSIVENESS ===== */
+@media (max-width: 640px) {
+  .glass-primary,
+  .glass-floating,
+  .glass-ambient {
+    border-radius: 12px;
+  }
+  
+  .btn-glass {
+    padding: 8px 14px;
+    font-size: 0.8125rem;
+  }
+  
+  .glass-input {
+    padding: 8px 12px;
+    font-size: 0.8125rem;
+  }
+}
+
 /* ===== AVATAR ===== */
 
 .avatar {

@@ -175,7 +175,7 @@ export function Header({ onNewProject }: { onNewProject: () => void }) {
             )}
           </button>
           {notifOpen && (
-            <div className="absolute right-0 top-full mt-2 w-80 glass-floating p-4 animate-scale-in max-h-96 overflow-y-auto">
+            <div className="absolute right-0 top-full mt-2 w-[calc(100vw-2rem)] sm:w-80 glass-floating p-4 animate-scale-in max-h-96 overflow-y-auto">
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-sm font-semibold text-white">Notifications</h3>
                 <button
